@@ -11,14 +11,14 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>video-js</artifactId>
-    <version>4.10.3-SNAPSHOT</version>
+    <version>4.11.4-SNAPSHOT</version>
     <name>Video.js</name>
     <description>WebJar for Video.js</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>4.10.2</upstream.version>
+        <upstream.version>4.11.4</upstream.version>
         <upstream.url>http://www.videojs.com/downloads</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
         <requirejs>

@@ -11,15 +11,15 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>video-js</artifactId>
-    <version>4.11.5-SNAPSHOT</version>
+    <version>5.2.1-SNAPSHOT</version>
     <name>Video.js</name>
     <description>WebJar for Video.js</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>4.11.4</upstream.version>
-        <upstream.url>http://www.videojs.com/downloads</upstream.url>
+        <upstream.version>5.2.1</upstream.version>
+        <upstream.url>https://github.com/videojs/video.js/archive/v${upstream.version}/video-js-${upstream.version}.zip</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
         <requirejs>
             {
@@ -35,6 +35,11 @@
             <id>jamesward</id>
             <name>James Ward</name>
             <email>james@jamesward.com</email>
+        </developer>
+        <developer>
+            <id>mouhb</id>
+            <name>Mohamed Boussaa</name>
+            <email>mohamed.boussaa@xwiki.com</email>
         </developer>
     </developers>
 
@@ -56,25 +61,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${upstream.url}</url>
-                            <fromFile>video-js-${upstream.version}.zip</fromFile>
-                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
                 <executions>
@@ -83,11 +69,13 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
+                                <echo message="download archive" />
+                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip" />
                                 <echo message="unzip archive" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/video-js" />
+                                    <fileset dir="${project.build.directory}/video.js-${upstream.version}" includes="dist/video*.js dist/video*.css dist/video*.swf dist/font/ dist/ie8/ dist/lang/"/>
                                 </move>
                             </target>
                         </configuration>

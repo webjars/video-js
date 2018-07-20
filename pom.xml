@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>video-js</artifactId>
-    <version>5.10.8-SNAPSHOT</version>
+    <version>7.1.0</version>
     <name>Video.js</name>
     <description>WebJar for Video.js</description>
     <url>http://webjars.org</url>

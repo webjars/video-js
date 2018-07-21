@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.url>https://github.com/videojs/video.js/archive/v${version.unsnapshot}/video-js-${version.unsnapshot}.zip</upstream.url>
+        <upstream.url>https://github.com/videojs/video.js/releases/download/v7.1.0/video-js-${version.unsnapshot}.zip</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
         <requirejs>
             {
@@ -85,11 +85,7 @@
                                 <echo message="download archive" />
                                 <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip" />
                                 <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
-                                <echo message="moving resources" />
-                                <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/video.js-${version.unsnapshot}/dist" />
-                                </move>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destDir}"/>
                             </target>
                         </configuration>
                     </execution>
